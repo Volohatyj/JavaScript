@@ -26,18 +26,15 @@ personalMovieDB['genres'] = [];
 personalMovieDB['privat'] = false;
 
 for (let i = 0; i < 2; i++) {
-    let lastMovie = '', lastMovieLength = 0;
-    while (lastMovie === '' || lastMovie === null || lastMovieLength > 50) {
-        lastMovie = prompt('Один из последних просмотренных фильмов?', '');
-        if (typeof(lastMovie) == 'object') {
-            lastMovieLength;
-            console.log(typeof(lastMovie));
-        } else {
-            lastMovieLength = lastMovie.length;
-        }
+    const lastMovie = prompt('Один из последних просмотренных фильмов?', '');
+    const lastMovieEstimation = +prompt('На сколько оцените его?', '');
+    // const lastMovieLength = lastMovie.length;
+    if (lastMovie != null && lastMovie != '' && lastMovie.length <= 50) {
+        personalMovieDB.movies[lastMovie] = lastMovieEstimation;
+    } else {
+        console.log("ERROR");
+        i--;
     }
-    const lastMovieEstimation = +prompt('На сколько оцените его?', '');        
-    personalMovieDB.movies[lastMovie] = lastMovieEstimation;
 }
 
 switch (true) {
