@@ -1,3 +1,6 @@
 "use strict"
-const str = 'jhkj';
-console.log(str.length);
+const str = '3.1415pi';
+
+
+console.log(parseInt(str));
+console.log(parseFloat(str));
