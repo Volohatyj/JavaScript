@@ -1,31 +1,69 @@
 'use strict'
+
+function getTimeFromMinutes(minutesTotal) {
+   if (!Number.isInteger(minutesTotal) || minutesTotal < 0 ) {
+      return "Ошибка, проверьте данные";
+   }
+   const hours = Math.floor(minutesTotal/60);
+   const minutes = minutesTotal - hours*60;
+   let strHours;
+   let strMinutes; 
+   if (hours < 5 && hours > 1) {
+      strHours = 'часа';
+   } else if (hours >= 5 || hours === 0) {
+      strHours = 'часов';
+   } else {
+      strHours = 'час';
+   }
+   if (minutes < 5 && minutes > 1) {
+      strMinutes = 'минуты';
+   } else if (minutes >= 5 || minutes === 0) {
+      strMinutes = 'минут';
+   } else {
+      strMinutes = 'минута';
+   }
+   const answer = `Это ${hours} ${strHours} и ${minutes} ${strMinutes}`;
+   return answer;
+}
+
+console.log(getTimeFromMinutes(64));
+
+function findMaxNumber(num1, num2, num3, num4) {
+   array = (num1, num2, num3, num4);
+   const numMax = Math.max(num1, num2, num3, num4);
+   return numMax
+}
+
+
+console.log(findMaxNumber(5, 4, 2));
+
 // Упражнение по написанию кода 7: (*) Продвинутые задания на использование функций
-function calculateVolumeAndArea(sideLength) {
-   if (!Number.isInteger(sideLength) || typeof(sideLength) != 'number' || sideLength < 0) {
-      console.log('При вычислении произошла ошибка')
-   } else {
-      const volume = Math.pow(sideLength, 3);
-      const area = Math.pow(sideLength, 2);
-      console.log(`Объем куба: ${volume}, площадь всей поверхности: ${area}`);
-   }
-}
+// function calculateVolumeAndArea(sideLength) {
+//    if (!Number.isInteger(sideLength) || typeof(sideLength) != 'number' || sideLength < 0) {
+//       console.log('При вычислении произошла ошибка')
+//    } else {
+//       const volume = Math.pow(sideLength, 3);
+//       const area = Math.pow(sideLength, 2);
+//       console.log(`Объем куба: ${volume}, площадь всей поверхности: ${area}`);
+//    }
+// }
 
-calculateVolumeAndArea('1');
+// calculateVolumeAndArea('1');
 
-function getCoupeNumber(num) {
-   if (num > 36 || num === 0) {
-      console.log('Таких мест в вагоне не существует');
-   } else if (!Number.isInteger(num) || num < 0 || typeof(num) != 'number') {
-      console.log('Ошибка. Проверьте правильность введенного номера места');
-   } else {
-      const cupe = Math.ceil(num / 4);
-      console.log(cupe);   
-   }
-}
+// function getCoupeNumber(num) {
+//    if (num > 36 || num === 0) {
+//       console.log('Таких мест в вагоне не существует');
+//    } else if (!Number.isInteger(num) || num < 0 || typeof(num) != 'number') {
+//       console.log('Ошибка. Проверьте правильность введенного номера места');
+//    } else {
+//       const cupe = Math.ceil(num / 4);
+//       console.log(cupe);   
+//    }
+// }
 
-getCoupeNumber(0);
+// getCoupeNumber(0);
 
-console.log(Math.pow(3, 3));
+
 
 // function sayHello(name) {
 //    return `Привет, ${name}!`
