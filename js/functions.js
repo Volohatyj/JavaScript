@@ -1,41 +1,59 @@
 'use strict'
 
-function getTimeFromMinutes(minutesTotal) {
-   if (!Number.isInteger(minutesTotal) || minutesTotal < 0 ) {
-      return "Ошибка, проверьте данные";
+// Упражнение по написанию кода 9: (**) Задача с собеседований на числа Фибоначчи
+
+let result = '';
+function fib(level) {
+   for (let  i = 0; i < level; i++) {
+      if (i === 0) {
+         result += i;
+      }
+      result += ' ' + i; 
    }
-   const hours = Math.floor(minutesTotal/60);
-   const minutes = minutesTotal - hours*60;
-   let strHours;
-   let strMinutes; 
-   if (hours < 5 && hours > 1) {
-      strHours = 'часа';
-   } else if (hours >= 5 || hours === 0) {
-      strHours = 'часов';
-   } else {
-      strHours = 'час';
-   }
-   if (minutes < 5 && minutes > 1) {
-      strMinutes = 'минуты';
-   } else if (minutes >= 5 || minutes === 0) {
-      strMinutes = 'минут';
-   } else {
-      strMinutes = 'минута';
-   }
-   const answer = `Это ${hours} ${strHours} и ${minutes} ${strMinutes}`;
-   return answer;
+   return result
 }
 
-console.log(getTimeFromMinutes(64));
+console.log(fib(4));
 
-function findMaxNumber(num1, num2, num3, num4) {
-   array = (num1, num2, num3, num4);
-   const numMax = Math.max(num1, num2, num3, num4);
-   return numMax
-}
+// Упражнение по написанию кода 8: (*) Продвинутые задания на использование функций
+// function getTimeFromMinutes(minutesTotal) {
+//    if (!Number.isInteger(minutesTotal) || minutesTotal < 0 ) {
+//       return "Ошибка, проверьте данные";
+//    }
+//    const hours = Math.floor(minutesTotal/60);
+//    const minutes = minutesTotal - hours*60;
+//    let strHours;
+//    let strMinutes; 
+//    if (hours < 5 && hours > 1) {
+//       strHours = 'часа';
+//    } else if (hours >= 5 || hours === 0) {
+//       strHours = 'часов';
+//    } else {
+//       strHours = 'час';
+//    }
+//    if (minutes < 5 && minutes > 1) {
+//       strMinutes = 'минуты';
+//    } else if (minutes >= 5 || minutes === 0) {
+//       strMinutes = 'минут';
+//    } else {
+//       strMinutes = 'минута';
+//    }
+//    const answer = `Это ${hours} ${strHours} и ${minutes} ${strMinutes}`;
+//    return answer;
+// }
+
+// console.log(getTimeFromMinutes(64));
+
+// function findMaxNumber(num1, num2, num3, num4) {   
+//    const numMax = Math.max(num1, num2, num3, num4);
+//    if (isNaN(numMax)) {
+//       return 0;
+//    }
+//    return numMax
+// }
 
 
-console.log(findMaxNumber(5, 4, 2));
+// console.log(findMaxNumber(5, 4, 1.1, 0));
 
 // Упражнение по написанию кода 7: (*) Продвинутые задания на использование функций
 // function calculateVolumeAndArea(sideLength) {
