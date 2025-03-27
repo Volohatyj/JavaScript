@@ -16,8 +16,8 @@ function start() {
 
 function rememberMyFilms() {
     for (let i = 0; i < 2; i++) {
-        const lastMovie = prompt('Один из последних просмотренных фильмов?', '');
-        const lastMovieEstimation = +prompt('На сколько оцените его?', '');
+        const lastMovie = prompt('Один из последних просмотренных фильмов?', '').trim();
+        const lastMovieEstimation = +prompt('На сколько оцените его?', '').trim();
         // const lastMovieLength = lastMovie.length;
         if (lastMovie != null && lastMovie != '' && lastMovie.length <= 50 && lastMovieEstimation != null && lastMovieEstimation != '') {
             personalMovieDB.movies[lastMovie] = lastMovieEstimation;
