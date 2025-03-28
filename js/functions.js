@@ -1,34 +1,27 @@
 'use strict'
 
 // Упражнение по написанию кода 9: (**) Задача с собеседований на числа Фибоначчи
+// function fib(level) {
+//    if (!Number.isInteger(level)) {
+//       return '';
+//    }
+//    let listFib = [];
+//    let num1 = 0;
+//    for (let  i = 0; i < level; i++) {
+//       if (i == 0) {
+//          num1 = 0;
+//       } else if (i == 1 || i == 2) {
+//          num1 = 1;
+//       } else {
+//          num1 = listFib[i-1] + listFib[i-2];
+//       }
+//       listFib.push(num1); 
+//    }
+//    let result = listFib.join(' ')
+//    return result;
+// }
 
-// Перше число 0
-// Друге і третє є одиницями
-// всі наступні є сумою двох попередніх значень
-// Це має бути масив значень, що поповнюється.
-
-
-function fib(level) {
-   if (!Number.isInteger(level)) {
-      return '';
-   }
-   let listFib = [];
-   let num1 = 0;
-   for (let  i = 0; i < level; i++) {
-      if (i == 0) {
-         num1 = 0;
-      } else if (i == 1 || i == 2) {
-         num1 = 1;
-      } else {
-         num1 = listFib[i-1] + listFib[i-2];
-      }
-      listFib.push(num1); 
-   }
-   let result = listFib.join(' ')
-   return result;
-}
-
-console.log(fib(8));
+// console.log(fib(8));
 
 // Упражнение по написанию кода 8: (*) Продвинутые задания на использование функций
 // function getTimeFromMinutes(minutesTotal) {

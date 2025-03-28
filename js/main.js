@@ -1,6 +1,11 @@
 "use strict"
-const str = '3.1415pi';
+ function first(lang, callback){
+    console.log(`Я вчу ${lang}`);
+    callback();
+ }
 
+function second() {
+    console.log("Ура!");
+}
 
-console.log(parseInt(str));
-console.log(parseFloat(str));
+first('JS', second);
