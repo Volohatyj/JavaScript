@@ -1,23 +1,17 @@
 "use strict"
 
-const arr = [10, 2, 30, 40, 5];
+const a = [9, 8, 7, 6, 5, 4, 3, 2]
 
-arr.sort(sortNum);
-
-function sortNum(a, b) {
-    return a-b;
+function LinearSearch(t,A)      // t - искомый элемент,
+{                               // A - массив, в котором ищем.
+    var n = A.length, i = 0;   
+    
+    A[n] = t;
+    
+    while (A[ i ] !== t) i++;
+                                
+    if (i < n) return i;          // На выходе индекс искомого элемента.
+    else return -1;               // Если искомого элемента нет в массиве, то -1.
 }
 
-console.log(arr);
-arr.pop(); // видаляє останній елемент
-arr.push(10); // додає елемент в кінець масиву
-
-arr.forEach(function(value, i, arr) {
-    console.log(`${i}: ${value} is inside the list ${arr}`);
-})
-
-console.log(arr);
-
-// for (let value of arr) {
-//     console.log(value);
-// }
+console.log(LinearSearch(5, a));
