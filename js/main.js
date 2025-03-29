@@ -1,17 +1,31 @@
 "use strict"
 
-const a = [9, 8, 7, 6, 5, 4, 3, 2]
+const personalPlanPeter = {
+    name: "Peter",
+    age: "29",
+    skills: {
+        languages: ['ru', 'eng'],
+        programmingLangs: {
+            js: '20%',
+            php: '10%'
+        },
+        exp: '1 month'
+    }
+};
 
-function LinearSearch(t,A)      // t - искомый элемент,
-{                               // A - массив, в котором ищем.
-    var n = A.length, i = 0;   
-    
-    A[n] = t;
-    
-    while (A[ i ] !== t) i++;
-                                
-    if (i < n) return i;          // На выходе индекс искомого элемента.
-    else return -1;               // Если искомого элемента нет в массиве, то -1.
+let progrLangs = personalPlanPeter.skills.programmingLangs;
+
+console.log(progrLangs);
+
+for (key in personalPlanPeter.skills.programmingLangs) {
+    console.log(key, personalPlanPeter.skills.programmingLangs[key])
 }
 
-console.log(LinearSearch(5, a));
+function showExperience(plan) {
+    return(plan.skills.exp);    
+}
+
+function showProgrammingLangs(plan) { 
+}
+
+showProgrammingLangs(personalPlanPeter);
