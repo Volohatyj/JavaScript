@@ -13,19 +13,24 @@ const personalPlanPeter = {
     }
 };
 
-let progrLangs = personalPlanPeter.skills.programmingLangs;
+const {age} = personalPlanPeter;
+console.log(age);
 
-console.log(progrLangs);
-
-for (key in personalPlanPeter.skills.programmingLangs) {
-    console.log(key, personalPlanPeter.skills.programmingLangs[key])
-}
 
 function showExperience(plan) {
     return(plan.skills.exp);    
 }
 
 function showProgrammingLangs(plan) { 
+    let progrLangs = personalPlanPeter.skills.programmingLangs;
+    let message = '';
+    for (key in progrLangs) {
+        message += `Язык ${key} изучен на ${progrLangs[key]}\n`
+    }
+    return message;
 }
 
+console.log(showProgrammingLangs());
+
 showProgrammingLangs(personalPlanPeter);
+
