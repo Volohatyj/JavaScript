@@ -10,27 +10,37 @@ const personalPlanPeter = {
             php: '10%'
         },
         exp: '1 month'
+    },
+    showAgeAndLangs: function (plan) {
+        const {age} = plan;
+        const {languages} = plan.skills;
+        let message = `Мне ${age} и я владею языками: `;
+        let lang = '';
+        for (let key in languages) {
+            lang = languages[key];
+            message += `${lang.toUpperCase()} `;
+        }
+        message = message.trim(' ');
+        return message;
     }
 };
 
-const {age} = personalPlanPeter;
-console.log(age);
-
+console.log(personalPlanPeter.showAgeAndLangs(personalPlanPeter));
 
 function showExperience(plan) {
     return(plan.skills.exp);    
 }
 
 function showProgrammingLangs(plan) { 
-    let progrLangs = personalPlanPeter.skills.programmingLangs;
     let message = '';
-    for (key in progrLangs) {
-        message += `Язык ${key} изучен на ${progrLangs[key]}\n`
+    let {programmingLangs} = plan.skills;
+    for (let key in programmingLangs) {
+        message += `Язык ${key} изучен на ${programmingLangs[key]}\n`
     }
     return message;
 }
 
-console.log(showProgrammingLangs());
+console.log(showProgrammingLangs(personalPlanPeter));
 
 showProgrammingLangs(personalPlanPeter);
 
