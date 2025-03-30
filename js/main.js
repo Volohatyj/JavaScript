@@ -1,30 +1,36 @@
 "use strict"
 
-const family = ['Peter', 'Ann', 'Alex', 'Linda'];
+const someString = 'This is some strange string';
 
-function showFamily(arr) {
-    if (arr.length === 0) {
-        return 'Семья пуста';
+function reverse(str) {
+    if (typeof(str) == 'string') {
+        return(str.split("").reverse().join(""))
+    } else {
+        return 'Ошибка!'
     }
-    let message = "Семья состоит из: ";
+}
+
+
+const baseCurrencies = ['USD', 'EUR'];
+const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+// const baseCurrencies = [];
+// const additionalCurrencies = [];
+
+
+function availableCurr(arr, missingCurr) {
+    let available = 'Доступные валюты:\n';
+    if (arr.length == 0) {
+        return 'Нет доступных валют'
+    };
     arr.forEach(element => {
-        message += element + " "
+        if (element != missingCurr) {
+            available += `${element}\n`;
+        }
     });
-    message = message.trim();
-    return message;
+    return available;
 }
 
+console.log(availableCurr([...baseCurrencies, ...additionalCurrencies], 'RUB'));
 
-const favoriteCities = ['liSBon', 'ROME', 'miLan', 'Dublin'];
 
-function standardizeStrings(arr) {
-    for (let value of arr) {
-        let output = '';
-        output = value;
-        console.log(output.toLowerCase());
-    }
-    
-}
-standardizeStrings(favoriteCities);
-
-console.log(showFamily(family));
+console.log(reverse(someString));
