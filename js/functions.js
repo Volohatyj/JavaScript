@@ -1,64 +1,41 @@
 'use strict'
 
-const shoppingMallData = {
-    shops: [
-        {
-            width: 10,
-            length: 5
-        },
-        {
-            width: 15,
-            length: 7
-        },
-        {
-            width: 20,
-            length: 5
-        },
-        {
-            width: 8,
-            length: 10
-        }
-    ],
-    height: 5,
-    moneyPer1m3: 30,
-    budget: 50000
-}
+const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
+// const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi'];
 
-let shops = shoppingMallData.shops;
-let shopAreas = [];
-let shopVolumes = [];
-let payment = [];
-let paymentSum = 0;
-for (let i=0; i < shops.length; i++) {
-    const width = +shops[i]['width'];
-    const length = +shops[i]['length'];
-    shopAreas[i] = width * length;
-    shopVolumes[i] = shopAreas[i] * shoppingMallData.height;
-    payment[i] = shopVolumes[i] * shoppingMallData.moneyPer1m3;
-    paymentSum += payment[i];
-}
+function sortStudentsByGroups(arr) {
+    const teams = [];
+    const students = arr.length;
+    let teamCount  = 0;
+    const arrSorted = arr.sort();
 
-console.log(paymentSum);
-
-function isBudgetEnough(data) {
-    let shops = data;
-    let shopAreas = [];
-    let shopVolumes = [];
-    let payment = [];
-    let paymentSum = 0;
-    for (let i=0; i < shops.length; i++) {
-        const width = +shops[i]['width'];
-        const length = +shops[i]['length'];
-        shopAreas[i] = width * length;
-        shopVolumes[i] = shopAreas[i] * shoppingMallData.height;
-        payment[i] = shopVolumes[i] * shoppingMallData.moneyPer1m3;
-        paymentSum += payment[i];
-    }    
-    if (paymentSum > shoppingMallData.budget) {
-        return 'Бюджета недостаточно'
-    } else {
-        return "Бюджета достаточно"
+    // console.log(arr.length % 3);
+   
+    for (let i = 0; i <3; i++) {
+        teams.push([]);   
     }
+    teams.push("Оставшиеся студенты: ");
+    console.log(teams);
+
+    for (let i = 0; i < students; i++) {
+        if (i < 9) {
+            // console.log(`teamCount: ${teamCount}`)
+            teams[teamCount].push(arrSorted[i]);
+            // console.log(`teams[teamCount]: ${teams[teamCount]}`);
+        } else if (i > 8) {
+            teams[teamCount] += arrSorted[i];
+            // console.log(arrSorted[i]);
+        }
+        if ((i + 1) % 3 == 0) {
+            teamCount++;
+        } 
+    }
+    if (students == 9) {
+        teams[3] += '-';
+    }
+    console.log(teams);
+    return teams;
+
 }
 
-console.log(isBudgetEnough(shoppingMallData.shops))
+sortStudentsByGroups(students);
