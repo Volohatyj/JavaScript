@@ -1,18 +1,12 @@
 "use strict"
 
-const soldier = {
-    health: 400,
-    armor: 100,
-    sayHello: function() {
-        return "hello"
-    }
-};
+let number = 5; debugger
 
-// const rhyan = {
-//         health: 100
-//     }
-    
-// Object.setPrototypeOf(rhyan, soldier);
-const rhyan = Object.create(soldier);
+function logNumber() {
+    let number = 4; debugger 
+    console.log(number);
+}
 
-console.log(rhyan.sayHello());
+number = 6;
+
+logNumber(); debugger
