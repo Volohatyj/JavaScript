@@ -1,21 +1,46 @@
 'use strict';
 
-const box = document.getElementById('box');
-console.log(box);
+const box = document.getElementById('box'),
+    btns = document.getElementsByTagName('button'),
+    circles = document.getElementsByClassName('circle'),
+    hearts = document.querySelectorAll('.heart'),
+    oneHeart = document.querySelector('.heart'),
+    btn3 = document.getElementById('btn3'),
+    wrapper = document.querySelector('.wrapper');
 
-const btns = document.getElementsByTagName('button');
-console.log(btns[1]);
+box.style.backgroundColor = 'green';
+box.style.width = '450px';
 
-const circles = document.getElementsByClassName('circle');
-console.log(circles);
+const num1 = 200;
 
-const hearts = document.querySelectorAll('.heart', );
+// for (let i = 0; i < hearts.length; i++) {
+//     hearts[i].style.width = `${num1}px`;
+// }
+
 hearts.forEach(item => {
-    console.log(item);
-})
+    item.style.width = `${num1}px`
+});
 
-const oneHeart = document.querySelector('.heart');
-console.log(oneHeart);
+const div = document.createElement('div');
+div.classList.add('black');
 
-const btn3 = document.getElementById('btn3');
-console.log(btn3);
+// document.body.append(div);
+// document.querySelector('.wrapper').append(div);
+// wrapper.append(div); // вставити в кінець
+// wrapper.appendChild(div); // вставити в кінець
+
+// wrapper.prepend(div); // вставити в початок
+// hearts[0].before(div);
+hearts[0].after(div);
+div.innerHTML = '<h1>Hello Jack!</h1>';
+// div.textContent = 'Hi Jack';
+
+div.insertAdjacentHTML('beforebegin', '<h2>Hi Jack!</h2>');
+
+// wrapper.insertBefore(div, hearts[0]); // (Що вставити, перед чим вставити)
+
+// btns[3].remove();
+// wrapper.removeChild(hearts[2]);
+
+// hearts[2].replaceWith(circles[2])
+// wrapper.replaceChild(circles[0], hearts[0]); // чим замінити, що замінити
