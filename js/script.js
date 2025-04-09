@@ -1,52 +1,122 @@
-/* Задания на урок:
-
-1) Удалить все рекламные блоки со страницы (правая часть сайта)
-
-
-2) Изменить жанр фильма, поменять "комедия" на "драма"
-
-3) Изменить задний фон постера с фильмом на изображение "bg.jpg". Оно лежит в папке img.
-Реализовать только при помощи JS
-
-4) Список фильмов на странице сформировать на основании данных из этого JS файла.
-Отсортировать их по алфавиту 
-
-5) Добавить нумерацию выведенных фильмов */
-
 'use strict';
 
-const movieDB = {
-    movies: [
-        "Логан",
-        "Лига справедливости",
-        "Ла-ла лэнд",
-        "Одержимость",
-        "Скотт Пилигрим против..."
-    ]
+const btns = document.querySelectorAll('button');
+
+/*
+btns[0].onclick = function() {
+    alert('Hi Jack!');
 };
 
-const element = document.querySelector('.promo__adv'),
-    poster = document.querySelector('.promo__bg'), 
-    genre = poster.querySelector('.promo__genre'),
-    interactiveList = document.querySelector('.promo__interactive-list');
+btns[0].onclick = function() {
+    alert('Click 2'); // Спрацює саме останній варіант обробщика події
+};
+*/
 
-if (element) {
-  element.remove(); // Видаляємо елемент з DOM
-}
+/*
+btns[0].addEventListener('click', () => {
+    alert('addEventListener'); // виконується першим
+});
 
-// genre.innerHTML = 'ДРАМА';
-genre.textContent = 'ДРАМА';
-console.dir(poster);
-if (poster) {
-    poster.style.backgroundImage = 'url("img/bg.jpg")'; // Встановлюємо нове фонове зображення
-  }
+btns[0].addEventListener('click', () => {
+    alert('addEventListener2'); // виконується після попереднього обробщика
+});
+*/
 
-interactiveList.innerHTML = '';
-movieDB.movies.sort();
-movieDB.movies.forEach((film, i) => {
-    interactiveList.innerHTML += `
-         <li class="promo__interactive-item">${i+1}. ${film}
-            <div class="delete"></div>
-        </li>
-    `;
+/*
+btns[0].addEventListener('mouseenter', (event) => { // Якщо окрім події є додаткові аргументи, то вони ідуть наступними через кому
+    alert('курсор над кнопкою');
+    console.log(event); // => всі параметри події
+    console.log(event.type); // => mouseenter
+    console.log(event.target); // => цільовий фрагмент HTML-коду
+    event.target.style.display = 'none';
+});
+*/
+
+/*
+btns[0].addEventListener('click', (event) => { // Якщо окрім події є додаткові аргументи, то вони ідуть наступними через кому
+    console.log(event); // => всі параметри події
+    console.log(event.type); // => mouseenter
+    console.log(event.target); // => цільовий фрагмент HTML-коду
+    event.target.style.display = 'none';
+});
+*/
+
+/*
+const deleteElement = (event) => {
+    event.target.remove(); //обидва варіанти робочі
+    // event.target.style.display = 'none';
+};
+btns[0].addEventListener('click', deleteElement);
+*/
+
+/*
+let i = 0;
+const deleteElement = (event) => {
+    console.log(event.type);
+    i++;
+    if (i == 3) {
+        btns[0].removeEventListener('click', deleteElement);
+        event.target.remove(); 
+    }
+};
+btns[0].addEventListener('click', deleteElement);
+*/
+
+/*
+//Всплиття подій. Подія спершу спрацьовує на вкладеному елементі, а потім на батьківському
+const overlay = document.querySelector('.overlay');
+let i = 0;
+const deleteElement = (event) => {
+    console.log(event.target);
+    console.log(event.currentTarget);
+    console.log(event.type);
+    i++;
+    if (i == 3) {
+        btns[0].removeEventListener('click', deleteElement);
+        event.target.remove(); 
+    }
+};
+overlay.addEventListener('click', deleteElement);
+// btns[4].addEventListener('click', deleteElement);
+*/
+
+/*
+// Відміна стандартних дій браузера
+const link = document.querySelector('a');
+link.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log(event.type);
+    console.log(event.target);
+    alert('Prohibited'); // завжди виконується першою
+});
+*/
+
+/*
+// Обробка псевдомасиву елементів
+let i = 0;
+const deleteElement = (btn) => {
+    console.log(`i: ${i}`);
+    i++;
+    if (i >= 3) {
+        console.log(btn.target);
+        console.log(btn.currentTarget);
+        console.log(btn.type);
+        console.log('i = 3');
+        // event.target.remove(); 
+        btn.target.style.display = 'none';
+    }
+};
+
+btns.forEach(btn => {
+    btn.addEventListener('click', deleteElement);
+});
+*/
+
+// Опції addEventListener()
+const deleteElement = (event) => {
+    event.target.remove(); //обидва варіанти робочі
+    // event.target.style.display = 'none';
+};
+btns.forEach(btn => {
+    btn.addEventListener('click', deleteElement, {once: true});
 });
