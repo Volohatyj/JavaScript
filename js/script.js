@@ -65,10 +65,20 @@ function getTotalProgressByIteration(data) {
                 total += course[i].progress;
             };
         } else {
-            
+            for (let subCourse of Object.values(course)){
+                students += subCourse.length;
+
+                for (let i=0; i < subCourse.length; i++) {
+                    total += subCourse[i].progress;
+                };
+            };
         };
     };
     return total / students;
 };
 
 console.log(getTotalProgressByIteration(students));
+
+function getTotalProgressByRecursion(data) {
+    
+};
