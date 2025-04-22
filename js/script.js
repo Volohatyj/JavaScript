@@ -50,7 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (newFilm) { // Перевірка, щоб ігнорувати порожній ввід даних в форму
             if (newFilm.length > 21) { // Обрізаємо назву фільма до 21 знака
                 newFilm = `${newFilm.substring(0, 22)}...`;
-            };           
+            };   
+            
+            if (favorite) {
+                console.log('Добавляем любимый фильм')
+            };
 
             // Створення нового фільму та додавання його в список переглянутих фільмів
             // Додавання фільму в базу даних і відсортуємо
@@ -95,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
       
     function createMovieList(films, parent) {
+        sortArray(films);
         // Створення нових елементів на сторінці (список фільмім з БД) 
         parent.innerHTML = '';
         films.forEach((film, i) => {
@@ -104,13 +109,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 </li>
             `;
         });
+        // Видалення елементів-батьків при натисканні кнопки видалення
+        document.querySelectorAll('.delete').forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.remove();
+                movieDB.movies.splice(i, 1); // Видаляє вказану кількість елементів з масиву починаючи з певного номера.
+                createMovieList(films, parent) // Рекурсія для перерахунку нумерації списку
+            });
+        });
 
     };
 
 
     deleteAdv(adv);
     makeChanges();
-    sortArray(movieDB.movies);
+    
     createMovieList(movieDB.movies, interactiveList);
 
 });
