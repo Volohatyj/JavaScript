@@ -21,18 +21,25 @@ const btn = document.querySelector('.btn');
 let timerID,
     i = 0;
 
-btn.addEventListener('click', () => {
-    // const timerId = setTimeout(logger, 2000);
-    timerId = setInterval(logger, 2000);
-});
+// btn.addEventListener('click', () => {
+//     // const timerId = setTimeout(logger, 2000);
+//     timerId = setInterval(logger, 1000);
+// });
 
-function logger() {
-    // if (i === 3) {
-    //     clearInterval(timerID);
-    // };
-    console.log('btn');
-    i++;
-};
+// function logger() {
+//     if (i === 3) {
+//         clearInterval(timerId);
+//     };
+//     console.log('btn');
+//     i++;
+// };
 
+// // рекурсивний виклик setTimeout
+// let id = setTimeout(function log() {
+//     console.log('Hello');
+//     id = setTimeout(log, 500);
+// }, 500);
 
 // clearInterval(timerId); // виключає вказаний таймер 
+
+
