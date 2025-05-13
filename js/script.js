@@ -1,38 +1,38 @@
-window.addEventListener("DOMContentLoaded", () => {
-    const tabs = document.querySelectorAll('.tabheader__item'),
-        tabContent = document.querySelectorAll('.tabcontent'),
-        tabParent = document.querySelector('.tabheader__items');
 
-    // ховаємо контент табів
-    function hideTabContent() {
-        tabContent.forEach(item => {
-            item.style.display = 'none';
-        });
+/*
+const timerId = setTimeout(function() {
+    alert('5 sec');
+}, 5000);
+*/
 
-        tabs.forEach(item => {
-            item.classList.remove('tabheader__item_active') // видаляємо для кожного з табів клас активності/ Крапку не ставимо, бо працюємо беспосередньо з класами
-        });
-    };
+/*
+const timerId = setTimeout(function(text) {
+    alert(text);
+}, 1000, '1 sec');
 
-    // показуємо таби
-    function showTabContent(i = 0) {
-        tabContent[i].style.display = 'block';
-        tabs[i].classList.add('tabheader__item_active');
-        }
-    hideTabContent();
-    showTabContent();
-    
-    // делегування подій та обробщик події-кліку
-    tabParent,addEventListener('click', (event) => {
-        const target = event.target;
 
-        if (target && target.classList.contains('tabheader__item')) {
-            tabs.forEach((item, i) => {
-                if (target == item) {
-                    hideTabContent();
-                    showTabContent(i);
-                };
-            });
-        };
-    });
+const text = '10 sec'
+const timerId2 = setTimeout(function(text) {
+    alert(text);
+}, 5000, text);
+*/
+
+const btn = document.querySelector('.btn');
+let timerID,
+    i = 0;
+
+btn.addEventListener('click', () => {
+    // const timerId = setTimeout(logger, 2000);
+    timerId = setInterval(logger, 2000);
 });
+
+function logger() {
+    // if (i === 3) {
+    //     clearInterval(timerID);
+    // };
+    console.log('btn');
+    i++;
+};
+
+
+// clearInterval(timerId); // виключає вказаний таймер 
