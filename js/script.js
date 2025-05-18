@@ -1,45 +1,101 @@
+"use strict";
 
-/*
-const timerId = setTimeout(function() {
-    alert('5 sec');
-}, 5000);
-*/
+window.addEventListener("DOMContentLoaded", () => {
 
-/*
-const timerId = setTimeout(function(text) {
-    alert(text);
-}, 1000, '1 sec');
+    // **Tabs**
+    const tabs = document.querySelectorAll('.tabheader__item'),
+        tabContent = document.querySelectorAll('.tabcontent'),
+        tabParent = document.querySelector('.tabheader__items');
 
+    // ховаємо контент табів
+    function hideTabContent() {
+        tabContent.forEach(item => {
+            // item.style.display = 'none'; // без css
+            item.classList.add('hide'); // через css
+            item.classList.remove('show', 'fade'); // через css
+        });
 
-const text = '10 sec'
-const timerId2 = setTimeout(function(text) {
-    alert(text);
-}, 5000, text);
-*/
+        tabs.forEach(item => {
+            item.classList.remove('tabheader__item_active') // видаляємо для кожного з табів клас активності/ Крапку не ставимо, бо працюємо беспосередньо з класами
+        });
+    };
 
-const btn = document.querySelector('.btn');
-let timerID,
-    i = 0;
+    // показуємо таби
+    function showTabContent(i = 0) {
+        // tabContent[i].style.display = 'block'; // без css
+        tabContent[i].classList.add('show', 'fade');
+        tabContent[i].classList.remove('hide');
+        tabs[i].classList.add('tabheader__item_active');
+        }
+    // hideTabContent();
+    // showTabContent();
+    
+    // делегування подій та обробщик події-кліку
+    tabParent,addEventListener('click', (event) => {
+        const target = event.target;
 
-// btn.addEventListener('click', () => {
-//     // const timerId = setTimeout(logger, 2000);
-//     timerId = setInterval(logger, 1000);
-// });
+        if (target && target.classList.contains('tabheader__item')) {
+            tabs.forEach((item, i) => {
+                if (target == item) {
+                    hideTabContent();
+                    showTabContent(i);
+                };
+            });
+        };
+    });
 
-// function logger() {
-//     if (i === 3) {
-//         clearInterval(timerId);
-//     };
-//     console.log('btn');
-//     i++;
-// };
+    // **Timer**
 
-// // рекурсивний виклик setTimeout
-// let id = setTimeout(function log() {
-//     console.log('Hello');
-//     id = setTimeout(log, 500);
-// }, 500);
+    const deadline = '2025-05-19';
 
-// clearInterval(timerId); // виключає вказаний таймер 
+    function getTimeRemaining(endtime) {
+        const t = Date.parse(endtime) - Date.parse(new Date()) - 3 * 60 * 60 * 1000,
+            days = Math.floor(t / (1000 * 60 * 60 * 24)),
+            hours = Math.floor(t / (1000 * 60 * 60) % 24),
+            minutes = Math.floor(t / (1000 * 60) % 60),
+            seconds = Math.floor((t / 1000) % 60);
+        return {
+            'total': t,
+            'days': days,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+        };
+    };
 
+    function setClock(selector, endtime) {
+        const timer = document.querySelector(selector),
+            days = timer.querySelector('#days'),
+            hours = timer.querySelector('#hours'),
+            minutes = timer.querySelector('#minutes'),
+            seconds = timer.querySelector('#seconds'),
+            timeInterval = setInterval(updateClock, 1000);
 
+        updateClock();
+
+        function getZero(num) {
+            if (num >=0 && num < 10) {
+                return `0${num}`;
+            } else {
+                return num;
+            };
+        };
+
+         function updateClock() {
+            const t = getTimeRemaining(endtime);
+                
+            days.textContent = getZero(t.days);
+            hours.textContent = getZero(t.hours);
+            minutes.textContent = t.minutes;
+            seconds.textContent = t.seconds;
+
+            if (t.total <= 0) {
+                clearInterval(timeInterval);
+            };
+        };
+    };
+
+    setClock('.timer', deadline);
+});
+
+//
