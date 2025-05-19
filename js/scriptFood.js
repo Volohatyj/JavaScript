@@ -108,3 +108,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
     setClock('.timer', deadline);
 });
+
+console.dir(screen);
