@@ -107,6 +107,47 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     setClock('.timer', deadline);
+
+    // Modal window
+    
+    const modalTrigger = document.querySelectorAll('[data-modal]'),
+        modal = document.querySelector(".modal"),
+        modalCloseBtn = document.querySelector("[data-close]")
+
+        modalTrigger.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.classList.add('show');
+                modal.classList.remove('hide');
+                document.body.style.overflow = 'hidden'; // додаємо документу стиль що не дозволяє прокручувати сторінку
+            });
+        });
+
+        function closeModal() {
+            modal.classList.add('hide');
+            modal.classList.remove('show');
+            document.body.style.overflow = ''; // дозволяємо прокрутку документа (буде присвоєно значення за замовчуванням)
+        }
+
+        modalCloseBtn.addEventListener('click', closeModal());
+
+        // Закриття модального вікна при кліку на поле навколо цього модального вікна
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            };
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.code === 'Escape' && modal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+        
+    // Функція відкриття модального вікна
+
+    // Функція закриття модального вікна
+
+    // Обробщик подій на тригери модальних вікон
+
 });
 
-console.dir(screen);
