@@ -113,41 +113,54 @@ window.addEventListener("DOMContentLoaded", () => {
     const modalTrigger = document.querySelectorAll('[data-modal]'),
         modal = document.querySelector(".modal"),
         modalCloseBtn = document.querySelector("[data-close]")
-
-        modalTrigger.forEach(btn => {
-            btn.addEventListener('click', () => {
-                modal.classList.add('show');
-                modal.classList.remove('hide');
-                document.body.style.overflow = 'hidden'; // додаємо документу стиль що не дозволяє прокручувати сторінку
-            });
-        });
-
-        function closeModal() {
-            modal.classList.add('hide');
-            modal.classList.remove('show');
-            document.body.style.overflow = ''; // дозволяємо прокрутку документа (буде присвоєно значення за замовчуванням)
-        }
-
-        modalCloseBtn.addEventListener('click', closeModal());
-
-        // Закриття модального вікна при кліку на поле навколо цього модального вікна
-        modal.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                closeModal();
-            };
-        });
-
-        document.addEventListener('keydown', (event) => {
-            if (event.code === 'Escape' && modal.classList.contains('show')) {
-                closeModal();
-            }
-        });
         
-    // Функція відкриття модального вікна
+    function openModal() {
+        modal.classList.add('show');
+        modal.classList.remove('hide');
+        document.body.style.overflow = 'hidden'; // додаємо документу стиль що не дозволяє прокручувати сторінку
+        clearInterval(modalTimerID); // зупиняємо таймер, якщо користувач вже відкривав модальне вікно (для уникнення повторного відкриття)
+    };
 
-    // Функція закриття модального вікна
+        // Показ модального вікна при кліку по кнопці
+    modalTrigger.forEach(btn => {
+        btn.addEventListener('click', openModal);
+    });
 
-    // Обробщик подій на тригери модальних вікон
 
+    function closeModal() {
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // дозволяємо прокрутку документа (буде присвоєно значення за замовчуванням)
+    }
+    
+    // Закриття модального вікна при кліку на хрестику
+    modalCloseBtn.addEventListener('click', closeModal);
+
+    // Закриття модального вікна при кліку на поле навколо цього модального вікна
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        };
+    });
+
+    // закриття модального вікна клавішою ESC
+    document.addEventListener('keydown', (event) => {
+        if (event.code === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+        }
+    });
+
+    // Активація модального вікна таймером
+    const modalTimerID = setTimeout(openModal, 3000);
+    
+    function showModalByScroll() {
+        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
+            openModal();
+            window.removeEventListener('scroll', showModalByScroll); // Як тільки модальне вікно відкриється прокручуванням сторінки обробщик подій, що відкриває це модальне вікно буде видалений
+        };
+    };
+
+    // Активація модального вікна при прокрутці сторінки в певну позицію
+    window.addEventListener('scroll', showModalByScroll);
 });
 
